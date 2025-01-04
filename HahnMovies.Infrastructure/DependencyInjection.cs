@@ -1,7 +1,5 @@
-﻿using HahnMovies.Application.Common.Interfaces;
-using HahnMovies.Application.Interfaces;
+﻿using HahnMovies.Application.Common;
 using HahnMovies.Infrastructure.Data;
-using HahnMovies.Infrastructure.Repositories;
 using HahnMovies.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,11 +18,7 @@ public static class  DependencyInjection
         {
             options.UseSqlServer(connectionString);
         });
-        services.AddScoped<IUnitOfWork>(c => c.GetRequiredService<AppDbContext>());
-        services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
         // Register Repositories
-        services.AddScoped<IMoviesRepository, MoviesRepository>();
-        services.AddScoped<IMovieService, MovieService>();
         // Register Services
         services.AddHttpClient<ITmdbService, TmdbService>(client =>
         {

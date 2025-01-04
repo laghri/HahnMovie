@@ -1,33 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\Hahn_Movies\\HahnMovies.Domain\\HahnMovies.Domain.csproj": {}
+    "C:\\Users\\AhmedLaghrissi\\Projects\\Movie-Application\\HahnMovies.Domain\\HahnMovies.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\Hahn_Movies\\HahnMovies.Domain\\HahnMovies.Domain.csproj": {
+    "C:\\Users\\AhmedLaghrissi\\Projects\\Movie-Application\\HahnMovies.Domain\\HahnMovies.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Hahn_Movies\\HahnMovies.Domain\\HahnMovies.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\AhmedLaghrissi\\Projects\\Movie-Application\\HahnMovies.Domain\\HahnMovies.Domain.csproj",
         "projectName": "HahnMovies.Domain",
-        "projectPath": "C:\\Users\\HP\\Desktop\\Hahn_Movies\\HahnMovies.Domain\\HahnMovies.Domain.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\Hahn_Movies\\HahnMovies.Domain\\obj\\",
+        "projectPath": "C:\\Users\\AhmedLaghrissi\\Projects\\Movie-Application\\HahnMovies.Domain\\HahnMovies.Domain.csproj",
+        "packagesPath": "C:\\Users\\AhmedLaghrissi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AhmedLaghrissi\\Projects\\Movie-Application\\HahnMovies.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\AhmedLaghrissi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -35,11 +32,16 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "imports": [
             "net461",
             "net462",
@@ -56,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

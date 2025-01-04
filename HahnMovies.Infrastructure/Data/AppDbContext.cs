@@ -5,31 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HahnMovies.Infrastructure.Data;
 
-public class AppDbContext : DbContext, IAppDbContext, IUnitOfWork
+
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    private readonly IMediator _mediator;
-
-    public AppDbContext(DbContextOptions<AppDbContext> options, IMediator mediator)
-        : base(options)
-    {
-        _mediator = mediator;
-    }
-
-    public DbSet<Movies> Movies { get; set; }
-
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        return await base.SaveChangesAsync(cancellationToken);
-    }
-
-    public override int SaveChanges()
-    {
-        throw new InvalidOperationException("Use SaveChangesAsync method instead of SaveChanges");
-    }
+    public DbSet<Movie> Movies => Set<Movie>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        base.OnModelCreating(modelBuilder);
     }
 }

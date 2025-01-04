@@ -19,7 +19,7 @@ namespace HahnMovies.Infrastructure.Data
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("Application"));
 
-            return new AppDbContext(optionsBuilder.Options, null); // Pass null for IMediator during design-time
+            return new AppDbContext(optionsBuilder.Options); // Pass null for IMediator during design-time
         }
     }
 }

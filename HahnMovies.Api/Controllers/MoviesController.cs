@@ -1,47 +1,26 @@
-﻿using HahnMovies.Application.Interfaces;
+﻿using HahnMovies.Application.Movies.Commands.SyncMovies;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HahnMovies.Api.Controllers
 {
+    
     [ApiController]
     [Route("api/[controller]")]
-    public class MoviesController : ControllerBase
+    public class AdminController : ControllerBase
     {
-        private readonly IMovieService _movieService;
+        private readonly IMediator _mediator;
 
-        public MoviesController(IMovieService movieService)
+        public AdminController(IMediator mediator)
         {
-            _movieService = movieService;
+            _mediator = mediator;
         }
 
-        /*[HttpGet("popular")]
-        public async Task<IActionResult> GetPopularMovies(int page = 0, CancellationToken cancellationToken = default)
+        [HttpPost("sync")]
+        public async Task<IActionResult> SyncMovies(CancellationToken cancellationToken)
         {
-            await _movieService.SavePopularMoviesAsync(page, cancellationToken);
-            return Ok($"Popular movies from page {page} saved successfully!");
+            await _mediator.Send(new SyncMoviesCommand(), cancellationToken);
+            return Ok("Sync completed successfully");
         }
-        */
-
-        [HttpGet]
-        public async Task<IActionResult> GetMovies(CancellationToken cancellationToken)
-        {
-            var movies = await _movieService.GetMoviesAsync(cancellationToken);
-            return Ok(movies);
-        }
-        
-        [HttpPost("sync/popular")]
-        public async Task<IActionResult> SyncPopularMovies(CancellationToken cancellationToken)
-        {
-            await _movieService.SavePopularMoviesAsync(1, cancellationToken);
-            return Ok("Popular movies synced successfully!");
-        }
-
-        [HttpPost("sync/full")]
-        public async Task<IActionResult> SyncFullMovies(CancellationToken cancellationToken)
-        {
-            await _movieService.FullSyncFromDailyExportAsync(cancellationToken);
-            return Ok("Full movie sync completed successfully!");
-        }
-
     }
 }

@@ -1,5 +1,9 @@
+using HahnMovies.Application.Common;
+using HahnMovies.Application.Movies.Commands.SyncMovies;
 using HahnMovies.Infrastructure;
 using HahnMovies.Infrastructure.Data;
+using HahnMovies.Infrastructure.Repositories;
+using HahnMovies.Infrastructure.Services;
 using Hangfire;
 using MediatR;
 
@@ -10,8 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterDataServices(builder.Configuration);
-builder.Services.AddMediatR(typeof(AppDbContext).Assembly); 
+builder.Services.AddMediatR(typeof(SyncMoviesCommandHandler).Assembly);
 builder.Services.AddControllers(); 
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddHttpClient<ITmdbService, TmdbService>();
+
 builder.Services.AddHangfire(config =>
 {
     config.UseSqlServerStorage(builder.Configuration.GetConnectionString("Application"));
@@ -28,32 +35,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
 app.MapControllers();
 app.UseHangfireDashboard("/hangfire");
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
