@@ -1,5 +1,7 @@
 using HahnMovies.Application.Common;
 using HahnMovies.Application.Movies.Commands;
+using HahnMovies.Application.Movies.Commands.Comments;
+using HahnMovies.Application.Movies.Commands.Ratings;
 using HahnMovies.Application.Movies.Commands.SyncMovies;
 using HahnMovies.Application.Movies.Queries;
 using HahnMovies.Infrastructure;
@@ -18,7 +20,7 @@ builder.Services.AddMediatR(typeof(SyncMoviesCommandHandler).Assembly);
 builder.Services.AddMediatR(typeof(RateMovieCommandHandler).Assembly);
 builder.Services.AddMediatR(typeof(AddMovieCommentCommandHandler).Assembly);
 builder.Services.AddMediatR(typeof(SearchMoviesQueryHandler));
-builder.Services.AddControllers(); 
+builder.Services.AddControllers();
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IMovieCommentRepository, MovieCommentRepository>();
 builder.Services.AddHttpClient<ITmdbService, TmdbService>();
@@ -31,7 +33,6 @@ builder.Services.AddHangfire(config =>
 builder.Services.AddHangfireServer();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -42,4 +43,3 @@ app.UseHttpsRedirection();
 app.MapControllers();
 app.UseHangfireDashboard("/hangfire");
 app.Run();
-

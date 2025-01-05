@@ -2,7 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 using HahnMovies.Application.Common;
-using HahnMovies.Application.Movies.jobs.ChangesMovie;
+using HahnMovies.Application.Movies.Jobs.ChangesMovie;
 using HahnMovies.Domain.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;

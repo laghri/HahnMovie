@@ -2,7 +2,7 @@
 using HahnMovies.Domain.Models;
 using MediatR;
 
-namespace HahnMovies.Application.Movies.Commands;
+namespace HahnMovies.Application.Movies.Commands.Comments;
 
 public class AddMovieCommentCommandHandler(IMovieCommentRepository movieCommentRepository)
     : IRequestHandler<AddMovieCommentCommand>

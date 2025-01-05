@@ -1,7 +1,4 @@
-﻿namespace HahnMovies.Application.Movies.jobs.ChangesMovie;
-
-public class TmdbChangeResult
+﻿namespace HahnMovies.Application.Movies.Jobs.ChangesMovie
 {
-    public int Id { get; set; }
- 
+    public record TmdbChangeResult(int Id);
 }

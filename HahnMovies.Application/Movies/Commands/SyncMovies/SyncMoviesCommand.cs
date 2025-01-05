@@ -2,6 +2,4 @@
 
 namespace HahnMovies.Application.Movies.Commands.SyncMovies;
 
-public class SyncMoviesCommand : IRequest
-{
-}
+public class SyncMoviesCommand : IRequest;

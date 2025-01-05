@@ -15,16 +15,16 @@ public class SyncMoviesCommandHandler(
         logger.LogInformation("Starting full movie sync");
 
         var movieIds = await tmdbService.GetAllMovieIdsAsync(cancellationToken);
-            
+
         const int batchSize = 100;
         var enumerable = movieIds as int[] ?? movieIds.ToArray();
         for (var i = 0; i < enumerable.Count(); i += batchSize)
         {
             var batchIds = enumerable.Skip(i).Take(batchSize);
             var movies = await tmdbService.GetMovieDetailsAsync(batchIds, cancellationToken);
-                
-            await movieRepository.BulkUpsertAsync(movies, cancellationToken);
-                
+
+            await movieRepository.AddMovieAsync(movies, cancellationToken);
+
             logger.LogInformation("Processed {Count} movies", i + batchSize);
         }
 

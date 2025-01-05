@@ -1,4 +1,4 @@
-﻿namespace HahnMovies.Application.Movies.jobs;
+﻿namespace HahnMovies.Application.Movies.jobs.WeeklyFullSync;
 
 public class TmdbWeeklyFullSyncJobConfiguration
 {

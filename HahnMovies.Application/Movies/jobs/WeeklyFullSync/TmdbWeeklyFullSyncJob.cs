@@ -2,7 +2,7 @@
 using HahnMovies.Domain.Models;
 using Microsoft.Extensions.Logging;
 
-namespace HahnMovies.Application.Movies.Jobs
+namespace HahnMovies.Application.Movies.jobs.WeeklyFullSync
 {
     public class TmdbFullSyncJob(
         ITmdbService tmdbService,
@@ -20,13 +20,13 @@ namespace HahnMovies.Application.Movies.Jobs
                 logger.LogInformation("Fetched {Count} movie IDs from TMDB.", enumerable.Count());
 
                 const int batchSize = 100;
-                
+
                 foreach (var batch in enumerable.Chunk(batchSize))
                 {
                     var movies = await tmdbService.GetMovieDetailsAsync(batch, cancellationToken);
-                    
+
                     var moviesList = movies as Movie[] ?? movies.ToArray();
-                    await movieRepository.BulkUpsertAsync(moviesList, cancellationToken);
+                    await movieRepository.AddMovieAsync(moviesList, cancellationToken);
                     logger.LogInformation("Upserted {Count} movies into the database.", moviesList.Count());
                 }
 

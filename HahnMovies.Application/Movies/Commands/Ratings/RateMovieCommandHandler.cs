@@ -1,7 +1,7 @@
 ﻿using HahnMovies.Application.Common;
 using MediatR;
 
-namespace HahnMovies.Application.Movies.Commands;
+namespace HahnMovies.Application.Movies.Commands.Ratings;
 
 public class RateMovieCommandHandler(IMovieRepository movieRepository) : IRequestHandler<RateMovieCommand>
 {

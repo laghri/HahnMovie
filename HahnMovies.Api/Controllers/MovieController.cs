@@ -1,4 +1,5 @@
-﻿using HahnMovies.Application.Movies.Commands;
+﻿using HahnMovies.Application.Movies.Commands.Comments;
+using HahnMovies.Application.Movies.Commands.Ratings;
 using HahnMovies.Application.Movies.Commands.SyncMovies;
 using HahnMovies.Application.Movies.Queries;
 using HahnMovies.Domain.Models;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HahnMovies.Api.Controllers
 {
-    
     [ApiController]
     [Route("api/[controller]")]
     public class MovieController(IMediator mediator) : ControllerBase
@@ -18,7 +18,7 @@ namespace HahnMovies.Api.Controllers
             await mediator.Send(new SyncMoviesCommand(), cancellationToken);
             return Ok("Sync completed successfully");
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> SearchMovies([FromQuery] string title, CancellationToken cancellationToken)
         {
@@ -28,7 +28,7 @@ namespace HahnMovies.Api.Controllers
             var moviesList = movies as Movie[] ?? movies.ToArray();
             return Ok(!moviesList.Any() ? new List<Movie>() : moviesList);
         }
-        
+
         [HttpPost("{movieId}/rate")]
         public async Task<IActionResult> RateMovie(int movieId, [FromBody] int rating)
         {
@@ -47,7 +47,7 @@ namespace HahnMovies.Api.Controllers
 
             return Ok();
         }
-        
+
         [HttpPost("{movieId}/comment")]
         public async Task<IActionResult> CommentOnMovie(int movieId, [FromBody] AddMovieCommentRequest request)
         {

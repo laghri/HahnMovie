@@ -5,5 +5,5 @@ namespace HahnMovies.Application.Movies.Queries;
 
 public class SearchMoviesQuery : IRequest<IEnumerable<Movie>>
 {
-    public string Title { get; set; } = string.Empty;
+    public string Title { get; init; } = string.Empty;
 }

@@ -1,5 +1,6 @@
 using HahnMovies.Application.Movies.jobs;
 using HahnMovies.Application.Movies.jobs.ChangesMovie;
+using HahnMovies.Application.Movies.jobs.WeeklyFullSync;
 using HahnMovies.WorkerService;
 using HahnMovies.Infrastructure;
 using HahnMovies.Infrastructure.Data;
@@ -11,7 +12,6 @@ var builder = Host.CreateApplicationBuilder(args);
 // Register database and data services
 builder.Services.RegisterDataServices(builder.Configuration);
 
-// Add MediatR (if needed)
 builder.Services.AddMediatR(typeof(AppDbContext).Assembly);
 
 // Add Hangfire

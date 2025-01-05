@@ -1,8 +1,11 @@
-﻿namespace HahnMovies.Application.Movies.jobs.ChangesMovie;
-
-public class TmdbChangeResponse
+﻿namespace HahnMovies.Application.Movies.Jobs.ChangesMovie
 {
-    public int Page { get; set; }
-    public int TotalPages { get; set; }
-    public List<TmdbChangeResult> Results { get; set; }
+    public record TmdbChangeResponse
+    {
+        public int Page { get; init; }
+        
+        public int TotalPages { get; init; }
+        
+        public List<TmdbChangeResult> Results { get; init; } = null!;
+    }
 }
