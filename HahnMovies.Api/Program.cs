@@ -1,5 +1,7 @@
 using HahnMovies.Application.Common;
+using HahnMovies.Application.Movies.Commands;
 using HahnMovies.Application.Movies.Commands.SyncMovies;
+using HahnMovies.Application.Movies.Queries;
 using HahnMovies.Infrastructure;
 using HahnMovies.Infrastructure.Data;
 using HahnMovies.Infrastructure.Repositories;
@@ -9,14 +11,16 @@ using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.RegisterDataServices(builder.Configuration);
 builder.Services.AddMediatR(typeof(SyncMoviesCommandHandler).Assembly);
+builder.Services.AddMediatR(typeof(RateMovieCommandHandler).Assembly);
+builder.Services.AddMediatR(typeof(AddMovieCommentCommandHandler).Assembly);
+builder.Services.AddMediatR(typeof(SearchMoviesQueryHandler));
 builder.Services.AddControllers(); 
 builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IMovieCommentRepository, MovieCommentRepository>();
 builder.Services.AddHttpClient<ITmdbService, TmdbService>();
 
 builder.Services.AddHangfire(config =>
